@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "ES2020",
+    "target": "ES2019",
+    "declaration": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "outDir": "dist",
+    "strictPropertyInitialization": false,
+    "noImplicitAny": false
+  },
+  "include": ["src/**/*"]
+}
+
