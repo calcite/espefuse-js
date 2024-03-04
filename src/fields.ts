@@ -7,6 +7,7 @@ import { BitArrayPy } from "./bit_ops";
 import { parseBitNumStr, hexify } from './utils';
 import struct from 'python-struct';
 import { rsEncodeMsg } from './reed_solomon';
+import { Buffer } from 'buffer';
 
 class EfuseBlock extends EfuseBlockBase {
   lenOfBurnUnit(): number {
@@ -270,7 +271,7 @@ class EspEfuses extends EspEfusesBase {
           this.info('This is the correct behavior as we are actually burning DIS_DOWNLOAD_MODE which disables the connection to the chip');
           this.info('DIS_DOWNLOAD_MODE is enabled');
           this.info('Successful');
-          process.exit(0); // finish without errors
+          return;
         }
         throw fatalError;
       }
@@ -282,7 +283,7 @@ class EspEfuses extends EspEfusesBase {
           this.info('espefuse tool cannot continue to work in Secure download mode');
           this.info('ENABLE_SECURITY_DOWNLOAD is enabled');
           this.info('Successful');
-          process.exit(0); // finish without errors
+          return;
         }
       }
       throw fatalError;
