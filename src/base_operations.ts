@@ -302,3 +302,51 @@ export async function burnEfuse(esp: any, efuses: any, args: any): Promise<void>
     efuses.info("Successful");
   }
 }
+
+export async function writeProtectEfuse(esp: any, efuses: any, args: any): Promise<void>
+{
+  checkDuplicateNameInList(args.efuseName);
+
+  for (const efuseName of args.efuseName) {
+    const efuse = efuses.getItem(efuseName);
+
+    if (!efuse.isWriteable()) {
+      efuses.info(`Efuse ${efuse.name} is already write protected`);
+    } else {
+      // make full list of which efuses will be disabled
+      // (ie share a write disable bit)
+      const allDisabling = efuses.efuses.filter(
+        (e: any) => e.writeDisableBit === efuse.writeDisableBit);
+      const names = allDisabling.map((e: any) => e.name).join(", ");
+
+      efuses.info(`writing ${efuseName}`);
+      efuses.info(
+        `Permanently write-disabling efuse${
+          allDisabling.length > 1 ?  "s" : ""} ${names}`);
+
+      efuse.disableWrite();
+    }
+  }
+
+  if (!(await efuses.burnAll(true))) {
+    return;
+  }
+
+  efuses.info("Checking efuses...");
+  let raiseError = false;
+
+  for (const efuseName of args.efuseName) {
+    const efuse = efuses.getItem(efuseName);
+
+    if (efuse.isWriteable()) {
+      efuses.info(`Efuse ${efuse.name} is not write-protected.`);
+      raiseError = true;
+    }
+  }
+
+  if (raiseError) {
+    throw new Error("The burn was not successful.");
+  } else {
+    efuses.info("Successful");
+  }
+}
