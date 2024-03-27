@@ -719,7 +719,7 @@ class EfuseFieldBase extends EfuseProtectBase {
   word: number | null;
   pos: number | null;
   writeDisableBit: number | null;
-  readBisableBit: number | null;
+  readDisableBit: number | null;
   name: string;
   efuseClass: string;
   efuseType: string;
@@ -739,7 +739,7 @@ class EfuseFieldBase extends EfuseProtectBase {
     this.word = param.word;
     this.pos = param.pos;
     this.writeDisableBit = param.writeDisableBit;
-    this.readBisableBit = param.readDisableBit;
+    this.readDisableBit = param.readDisableBit;
     this.name = param.name;
     this.efuseClass = param.classType;
     this.efuseType = param.type;
