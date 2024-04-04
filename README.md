@@ -25,11 +25,18 @@ TODO
 
 List of implemented operations:
 
- - summary `async function summary(esp: any, efuses: any, args: any): Promise<void>`
+```
+esp: ESPLoader insance
+efuses: EspEfuses instance
+```
+
+---
+
+ - **summary** `async function summary(esp: any, efuses: any, args: any): Promise<void>`
 
     args: `{format: "summary"}` for human readable format
 
- - burnBit `async function burnBit(esp: any, efuses: any, args: any): Promise<void>`
+ - **burnBit** `async function burnBit(esp: any, efuses: any, args: any): Promise<void>`
 
     
     ```
@@ -38,7 +45,7 @@ List of implemented operations:
     bitNumber: bitNum - Bit number in the efuse block [0..BLK_LEN-1]
     ```
 
- - burnEfuse `async function burnEfuse(esp: any, efuses: any, args: any): Promise<void>`
+ - **burnEfuse** `async function burnEfuse(esp: any, efuses: any, args: any): Promise<void>`
 
     
     ```
@@ -46,7 +53,7 @@ List of implemented operations:
     nameValuePairs: [{[efuseName]: efuseValue}, ...]
     ```
 
- - readEfuse `async function readEfuse(esp: any, efuses: any, args: any)`
+ - **readEfuse** `async function readEfuse(esp: any, efuses: any, args: any)`
 
    ```
    args:
@@ -55,7 +62,7 @@ List of implemented operations:
 
    returns dict `{[efuseName]: value, ...}`
 
- - writeProtectEfuse `async function writeProtectEfuse(esp: any, efuses: any, args: any): Promise<void>`
+ - **writeProtectEfuse** `async function writeProtectEfuse(esp: any, efuses: any, args: any): Promise<void>`
 
    ```
    args:
@@ -63,7 +70,7 @@ List of implemented operations:
 
    ```
 
- - burnKey `async function burnKey(esp: any, efuses: any, args: any, digest: any = null): Promise<void>`
+ - **burnKey** `async function burnKey(esp: any, efuses: any, args: any, digest: any = null): Promise<void>`
 
    ```
    args:
