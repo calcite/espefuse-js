@@ -1,6 +1,18 @@
-TS port of espefuses tool. Only the esp32s3 variant is supported.
+## Javascript port of espefuses
 
-EspEfuses settings:
+**Only the esp32s3 variant is partially supported.**
+
+---
+
+`argparse` (parsing cmd line arguments) part of esptool is not implemented. The part is responsible for preprocessing user inputs (e.g. transform MAC address in string format to binary representation). 
+
+(Only burnEfuse operation is performing ArgValue check.)
+
+TODO
+
+---
+
+#### EspEfuses settings:
 
  - esp: esptool-js instance
  - skipConnect: `boolean = false` (assume esptool-js instance is connected if `true`)
@@ -9,7 +21,7 @@ EspEfuses settings:
  - terminal = `null`; same as in esptool-js
  - confirmFn = `null`; Confirmation function. Return `true` to confirm or raise Error to deny. 
 
-### operations
+#### operations
 
 List of implemented operations:
 
@@ -66,6 +78,6 @@ List of implemented operations:
 
    If `keyfile` is not set, `digest` is used instead as source for data to burn.
 
-   Number of items in `block`, `keypurpose`, and `keyfile` / `digest` must be equal.
+   Number of items in `block`, `keypurpose`, and `keyfile` / `digest` must be the same.
 
  Operations can be emulated for debugging purposes.
