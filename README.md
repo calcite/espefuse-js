@@ -19,21 +19,53 @@ List of implemented operations:
 
  - burnBit `async function burnBit(esp: any, efuses: any, args: any): Promise<void>`
 
-    args:
+    
     ```
+    args:
     block: blockName, - Efuse block to burn [string - BLOCK0,BLOCK1,BLOCK2,BLOCK3]
     bitNumber: bitNum - Bit number in the efuse block [0..BLK_LEN-1]
     ```
 
- - burnEfuse
+ - burnEfuse `async function burnEfuse(esp: any, efuses: any, args: any): Promise<void>`
 
-    args:
+    
     ```
+    args:
     nameValuePairs: [{[efuseName]: efuseValue}, ...]
     ```
 
- - readEfuse
- - writeProtectEfuse
- - burnKey
+ - readEfuse `async function readEfuse(esp: any, efuses: any, args: any)`
+
+   ```
+   args:
+   efuses: list of efuse names to read [efuseName, ..] 
+   ```
+
+   returns dict `{[efuseName]: value, ...}`
+
+ - writeProtectEfuse `async function writeProtectEfuse(esp: any, efuses: any, args: any): Promise<void>`
+
+   ```
+   args:
+   efuseName: list of efuse names to write protect [efuseName, ...]
+
+   ```
+
+ - burnKey `async function burnKey(esp: any, efuses: any, args: any, digest: any = null): Promise<void>`
+
+   ```
+   args:
+   keypurpose: list of key purpose [TODO?: support "XTS_AES_256_KEY"]
+   block: block name list
+   keyfile: list of files to read block data from. (not supported, TODO?)
+   forceWriteAlways: [boolean]
+   noWriteProtect: [boolean]
+
+   digest: list of data keys to burn
+   ```
+
+   If `keyfile` is not set, `digest` is used instead as source for data to burn.
+
+   Number of items in `block`, `keypurpose`, and `keyfile` / `digest` must be equal.
 
  Operations can be emulated for debugging purposes.
