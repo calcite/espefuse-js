@@ -4,12 +4,13 @@ stages:
 tag_version:
   stage: deploy
   before_script:
+    - apk add jq
     - git remote set-url origin https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_REPOSITORY_URL#*@}
     - git config user.email "${GITLAB_USER_EMAIL}"
     - git config user.name "${GITLAB_USER_NAME}"
   script:
     - VERSION_FILE="package.json"
-    - extract_version() { echo "pak = $(cat package.json); print(pak['version'])" | python3; }
+    - extract_version() { jq -r '.version' $1; }
     # Extract version from the file
     - current_version=$(extract_version "$(cat $VERSION_FILE)")
     # Get the previous version from the last commit
