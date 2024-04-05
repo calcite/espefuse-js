@@ -3,6 +3,30 @@ image: node:lts-slim
 stages:
   - deploy
 
+tag_version:
+  stage: deploy
+  before_script:
+    - git remote set-url origin https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_REPOSITORY_URL#*@}
+    - git config user.email "${GITLAB_USER_EMAIL}"
+    - git config user.name "${GITLAB_USER_NAME}"
+  script:
+    - VERSION_FILE="package.json"
+    - extract_version() { echo "pak = $(cat $1); console.log(pak.version)" | node }
+    # Extract version from the file
+    - current_version=$(extract_version "$(cat $VERSION_FILE)")
+    # Get the previous version from the last commit
+    - previous_version=$(extract_version "$(git show HEAD^:$VERSION_FILE)")
+    # Compare versions
+    - if [ "$current_version" != "$previous_version" ]; then
+    -   echo "Version has changed. Creating new tag."
+    -   git tag "v$current_version"
+    -   git push origin "v$current_version"
+    - else
+    -   echo "Version has not changed. No new tag created."
+    - fi
+  only:
+    - master
+
 publish-npm:
   stage: deploy
   script:
@@ -11,5 +35,4 @@ publish-npm:
     - echo "//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" >> .npmrc
     - npm publish
   only:
-    - master
-
+    - tag
