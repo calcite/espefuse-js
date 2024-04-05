@@ -10,7 +10,7 @@ tag_version:
     - git config user.name "${GITLAB_USER_NAME}"
   script:
     - VERSION_FILE="package.json"
-    - extract_version() { jq -r '.version' $1; }
+    - extract_version() { echo "$1" | jq -r '.version'; }
     # Extract version from the file
     - current_version=$(extract_version "$(cat $VERSION_FILE)")
     # Get the previous version from the last commit
