@@ -1,5 +1,3 @@
-image: node:lts-slim
-
 stages:
   - deploy
 
@@ -11,7 +9,7 @@ tag_version:
     - git config user.name "${GITLAB_USER_NAME}"
   script:
     - VERSION_FILE="package.json"
-    - extract_version() { echo "pak = $(cat $1); console.log(pak.version)" | node }
+    - extract_version() { echo "pak = $(cat package.json); print(pak['version'])" | python3 }
     # Extract version from the file
     - current_version=$(extract_version "$(cat $VERSION_FILE)")
     # Get the previous version from the last commit
@@ -28,6 +26,7 @@ tag_version:
     - master
 
 publish-npm:
+  image: node:lts-slim
   stage: deploy
   script:
     - npm ci
