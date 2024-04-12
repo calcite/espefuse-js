@@ -1,8 +1,3 @@
-export { EspEfuses } from "./esp32s3/fields";
-export { summary, burnBit, burnEfuse, readEfuse, writeProtectEfuse } from "./base_operations";
-export { burnKey } from "./esp32s3/operations";
-export { EmulateEfuseController } from "./esp32s3/emulate_efuse_controller";
-
 import * as esp32s3 from './esp32s3';
 
 //const SUPPORTED_BURN_COMMANDS = [
