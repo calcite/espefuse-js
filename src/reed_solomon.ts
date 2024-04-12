@@ -7,20 +7,6 @@ function gfPow(x: number, power: number): number {
   return gfExp[(gfLog[x] * power) % 255];
 }
 
-//function gfInverse(x: number): number {
-//  return gfExp[255 - gfLog[x]]; // gfInverse(x) == gfDiv(1, x)
-//}
-
-//function gfDiv(x: number, y: number): number {
-//  if (y === 0) {
-//    throw new Error('ZeroDivisionError');
-//  }
-//  if (x === 0) {
-//    return 0;
-//  }
-//  return gfExp[(gfLog[x] + 255 - gfLog[y]) % 255];
-//}
-
 function gfMul(x: number, y: number): number {
   if (x === 0 || y === 0) {
     return 0;
@@ -136,13 +122,3 @@ export function rsEncodeMsg(msgIn: number[], nsym: number): number[] {
 }
 
 initTables();
-//initTables();
-//
-//const msgIn: number[] = [0x40, 0xd2, 0x75, 0x47, 0x76, 0x17, 0x32, 0x06, 0x27, 0x26, 0x96, 0xc6, 0xc6, 0x96, 0x70, 0xec];
-//const nsym: number = 10;
-//const msg: number[] = rsEncodeMsg(msgIn, nsym);
-//
-//for (let i = 0; i < msg.length; i++) {
-//    console.log(msg[i].toString(16));
-//}
-//console.log('\n')

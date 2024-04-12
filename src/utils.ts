@@ -1,4 +1,3 @@
-//import BitArray from "@bitarray/es6";
 import { BitArrayPy } from "./bit_ops";
 
 export function hexify(buffer: Buffer | string, separator: string = ""): string {

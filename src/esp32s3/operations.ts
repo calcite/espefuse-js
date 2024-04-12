@@ -1,5 +1,6 @@
-import { hexify, checkDuplicateNameInList } from './utils';
-
+import { hexify, checkDuplicateNameInList } from '../utils';
+export { summary , burnBit , readEfuse , burnEfuse , writeProtectEfuse }
+  from "../base_operations";
 
 export async function burnKey(esp: any, efuses: any, args: any,
                               digest: any = null): Promise<void> {

@@ -1,6 +1,6 @@
 import { EfuseBlocksBase, EfuseFieldsBase, EfuseRegistersBase, Field }
-  from './mem_definition_base';
-import efuseDefs from './efuse_defs';
+  from '../mem_definition_base';
+import efuseDefs from '../efuse_defs/esp32s3';
 
 
 class EfuseDefineRegisters extends EfuseRegistersBase {

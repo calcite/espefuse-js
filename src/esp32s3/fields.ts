@@ -1,12 +1,11 @@
 import { EfuseBlockBase , EspEfusesBase , EfuseFieldBase }
-  from './base_fields';
+  from '../base_fields';
 import { EfuseDefineRegisters, EfuseDefineBlocks, EfuseDefineFields }
   from './mem_definition';
-//import BitArrayPy from "@bitarray/es6";
-import { BitArrayPy } from "./bit_ops";
-import { parseBitNumStr, hexify } from './utils';
+import { BitArrayPy } from "../bit_ops";
+import { parseBitNumStr, hexify } from '../utils';
 import struct from 'python-struct';
-import { rsEncodeMsg } from './reed_solomon';
+import { rsEncodeMsg } from '../reed_solomon';
 import { Buffer } from 'buffer';
 
 class EfuseBlock extends EfuseBlockBase {
@@ -54,7 +53,18 @@ class EspEfuses extends EspEfusesBase {
   doNotConfirm: boolean = false;
   _esp: any; // Replace 'any' with the actual type of _esp
 
-  constructor(esp: any, skipConnect: boolean = false, debug: boolean = false, doNotConfirm: boolean = false, terminal = null, confirmFn = null) {
+  //constructor(esp: any, skipConnect: boolean = false, debug: boolean = false, doNotConfirm: boolean = false, terminal = null, confirmFn = null) {
+  constructor(options: { esp: any, skipConnect?: boolean, debug?: boolean,
+    doNotConfirm?: boolean, terminal?: any, confirmFn?: any }) {
+    const {
+      esp,
+      skipConnect = false,
+      debug = false,
+      doNotConfirm = false,
+      terminal = null,
+      confirmFn = null
+    } = options;
+
     super();
     this.Blocks = new EfuseDefineBlocks();
     this.Fields = new EfuseDefineFields();
