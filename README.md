@@ -6,9 +6,9 @@ No read/write file operation is implemented (burnKey input values, emulator outp
 
 ---
 
-`argparse` (parsing cmd line arguments) part of esptool is not implemented. The part is responsible for preprocessing user inputs (e.g. transform MAC address in string format to binary representation). 
+`argparse` (parsing cmd line arguments) part of esptool is not implemented. . 
 
-(Only burnEfuse operation is performing the ArgValue check.)
+(Only burnEfuse operation is performing the ArgValue check - the part is responsible for preprocessing user inputs (e.g. transform MAC address in string format to binary representation))
 
 ---
 
