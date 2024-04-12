@@ -2,13 +2,13 @@
 
 **Only the esp32s3 variant is partially supported.**
 
+No read/write file operation is implemented (burnKey input values, emulator output..).
+
 ---
 
 `argparse` (parsing cmd line arguments) part of esptool is not implemented. The part is responsible for preprocessing user inputs (e.g. transform MAC address in string format to binary representation). 
 
-(Only burnEfuse operation is performing ArgValue check.)
-
-TODO
+(Only burnEfuse operation is performing the ArgValue check.)
 
 ---
 
