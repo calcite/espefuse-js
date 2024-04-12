@@ -12,6 +12,61 @@ No read/write file operation is implemented (burnKey input values, emulator outp
 
 ---
 
+#### usage
+
+webpack example
+
+```javascript
+import { ESPLoader, LoaderOptions, Transport } from "esptool-js";
+import { getEfuses, getEspEmulator } from "@0m/espefuse-js";
+
+// same as term in esptool-js
+const espLoaderTerminal = {  
+   // xterm-js or any other output                                                  
+   clean() {                                                                    
+      terminal.clear();                                                  
+   },                                                                           
+   writeLine(data) {                                                            
+      terminal.writeln(data);                                            
+   },                                                                           
+   write(data) {                                                                
+      terminal.write(data);                                              
+   },
+};
+
+const main = async () => {
+   // esptool
+   const dev = await this.getDevice();
+   const transp = new Transport(dev, true);
+
+   const loaderOptions: LoaderOptions = {                                     
+            transport: transp,                                                  
+            baudrate: 115200,                                                 
+            terminal: espLoaderTerminal,                                        
+            enableTracing: false,                                                    
+         };
+   const espLoader = new ESPLoader(loaderOptions);
+
+   // espefuses
+   const efuseOptions = {
+            esp: espLoader,
+            skipConnect: false,                                
+            debug: true,
+            doNotConfirm: true,
+            terminal: this.espLoaderTerminal
+         };
+
+   const [efuses, operations] = getEfuses(efuseOptions);
+   await efuses.setup();
+
+   // print efuses summary
+   await operations.summary(espLoader, efuses, {format: "summary"});
+}
+
+main.then(() => {});
+
+```
+
 #### EspEfuses settings:
 
  - esp: esptool-js instance
