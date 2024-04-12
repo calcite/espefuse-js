@@ -6,9 +6,9 @@ No read/write file operation is implemented (burnKey input values, emulator outp
 
 ---
 
-`argparse` (parsing cmd line arguments) part of esptool is not implemented. . 
+`argparse` (parsing cmd line arguments) part of esptool is not implemented.
 
-(Only burnEfuse operation is performing the ArgValue check - the part is responsible for preprocessing user inputs (e.g. transform MAC address in string format to binary representation))
+(Only burnEfuse operation is performing the ArgValue check - e.g. transform MAC address in string format to binary representation..)
 
 ---
 
@@ -26,6 +26,7 @@ No read/write file operation is implemented (burnKey input values, emulator outp
 List of implemented operations:
 
 ```
+args used in all ops:
 esp: ESPLoader insance
 efuses: EspEfuses instance
 ```
@@ -87,4 +88,4 @@ efuses: EspEfuses instance
 
    Number of items in `block`, `keypurpose`, and `keyfile` / `digest` must be the same.
 
- Operations can be emulated for debugging purposes.
+Operations can be emulated for debugging purposes.
