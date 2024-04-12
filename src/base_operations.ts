@@ -1,5 +1,3 @@
-//import * as fs from 'fs';
-//import BitArrayPy from "@bitarray/es6";
 import { BitArrayPy } from "./bit_ops";
 import { hexify, checkDuplicateNameInList } from './utils';
 import { CheckArgValue } from './base_fields';
@@ -199,7 +197,9 @@ export async function burnEfuse(esp: any, efuses: any, args: any): Promise<void>
   const newValueList: any[] = Object.values(args.nameValuePairs);
   checkDuplicateNameInList(efuseNameList);
 
-  // this doesnt belong here, TODO
+  // Preprocess efuse values (MAC string to bytes, ..)
+  // In python tool, this action is performed during argparse.
+  // TODO move this somewhere else ?
   for (let i = 0; i < burnEfusesList.length; i++) {
     const efuse = burnEfusesList[i];
     const newValue: any = newValueList[i];

@@ -1,3 +1,4 @@
+// part of python bitstring operations
 import BitArray from "@bitarray/es6";
 
 class BitArrayPy extends BitArray {
@@ -16,6 +17,7 @@ class BitArrayPy extends BitArray {
     this.pos = this.pos + src.length;
   }
 
+  // TODO cleanup and doc
   read(len: any): BitArrayPy | number {
     // if len is 'type:len' - return number (return bitarray if its bytes)
     // if len is length, return bitarray
@@ -82,14 +84,6 @@ class BitArrayPy extends BitArray {
     return biArr;
   }
 
-  //and(bitArr: BitArrayPy | BitArray): BitArrayPy {
-  //  return super.and(bitArr) as BitArrayPy;
-  //}
-
-  //or(bitArr: BitArrayPy | BitArray): BitArrayPy {
-  //  return super.or(bitArr) as BitArrayPy;
-  //}
-
   and = (bitArr: BitArrayPy | BitArray): BitArrayPy => {
     return BitArrayPy.from(super['&'](bitArr));
   }
@@ -108,11 +102,13 @@ class BitArrayPy extends BitArray {
 
   fromBuffer(data: any): BitArrayPy {
     // TODO implement this for emulator
+    console.error('unimplemented!');
     return new BitArrayPy(1);
   }
 
   toBuffer(): BitArrayPy {
     // TODO implement this for emulator
+    console.error('unimplemented!');
     return new BitArrayPy(1);
   }
 }

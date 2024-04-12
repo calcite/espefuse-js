@@ -1,9 +1,9 @@
 //import BitArrayPy from "@bitarray/es6";
-import { BitArrayPy } from "./bit_ops";
-import { rsEncodeMsg } from './reed_solomon';
+import { BitArrayPy } from "../bit_ops";
+import { rsEncodeMsg } from '../reed_solomon';
 
 import { EfuseDefineBlocks, EfuseDefineFields, EfuseDefineRegisters } from './mem_definition';
-import { EmulateEfuseControllerBase } from './emulate_efuse_controller_base';
+import { EmulateEfuseControllerBase } from '../emulate_efuse_controller_base';
 
 class EmulateEfuseController extends EmulateEfuseControllerBase {
   CHIP_NAME: string = "ESP32-S3";
@@ -12,7 +12,7 @@ class EmulateEfuseController extends EmulateEfuseControllerBase {
   //debug: boolean = false;
 
   constructor(efuseFile: string | null = null, debug: boolean = false) {
-    super(efuseFile, debug);
+    super(efuseFile, EfuseDefineRegisters.EFUSE_MEM_SIZE, debug);
     this.Blocks = new EfuseDefineBlocks();
     this.Fields = new EfuseDefineFields();
     this.REGS = EfuseDefineRegisters;

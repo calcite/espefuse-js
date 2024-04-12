@@ -1,9 +1,6 @@
 import { binascii } from 'binascii';
-//import BitArrayPy from "@bitarray/es6";
 import { BitArrayPy } from "./bit_ops";
 import { hexify, parseBitNumStr, maskToShift } from './utils';
-import { EspEfuses } from './fields';
-// BitArrayPy, util.hexify ??
 
 class CheckArgValue {
   efuses: any;
@@ -69,7 +66,7 @@ abstract class EfuseProtectBase {
   readDisableBit: number | number[] | null;
   writeDisableBit: number | null;
   name: string;
-  parent: EspEfuses;
+  parent: EspEfusesBase;
 
   getReadDisableMask(blkPart?: number | null): number {
     /** Returns mask of read protection bits

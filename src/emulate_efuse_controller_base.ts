@@ -1,6 +1,4 @@
-//import BitArrayPy from "@bitarray/es6";
 import { BitArrayPy } from "./bit_ops";
-import { EfuseDefineBlocks, EfuseDefineFields, EfuseDefineRegisters } from './mem_definition';
 import { EfuseBlocksBase } from './mem_definition_base';
 import { hexify } from './utils';
 
@@ -16,7 +14,9 @@ abstract class EmulateEfuseControllerBase {
   abstract getMajorChipVersion(): number;
   abstract getMinorChipVersion(): number;
 
-  constructor(efuseFile: string | null = null, debug: boolean = false) {
+  constructor(efuseFile: string | null = null, efuseMemSize: number, debug: boolean = false) {
+    // in case of porting another dev, efuseMemSize is js specific
+    // (super in js must be called first in child)
     this.debug = debug;
     this.efuseFile = efuseFile;
     if (this.efuseFile) {
@@ -26,20 +26,15 @@ abstract class EmulateEfuseControllerBase {
         this.mem = BitArrayPy.fromBuffer(fileData);
       } catch (error) {
         // The file is empty or does not fit the length.
-        this.mem = new BitArrayPy(this.REGS.EFUSE_MEM_SIZE * 8);
+        this.mem = new BitArrayPy(efuseMemSize * 8);
         this.mem.setBits(0);
         fs.writeFileSync(this.efuseFile, this.mem.toBuffer());
       }
       */
     } else {
-      // TODO rm
-      this.Blocks = new EfuseDefineBlocks();
-      this.Fields = new EfuseDefineFields();
-      this.REGS = EfuseDefineRegisters;
-
       // efuseFile is not provided
       // It means we do not want to keep the result of efuse operations
-      this.mem = new BitArrayPy(this.REGS.EFUSE_MEM_SIZE * 8);
+      this.mem = new BitArrayPy(efuseMemSize * 8);
     }
   }
 
