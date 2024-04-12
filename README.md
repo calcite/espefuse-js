@@ -46,6 +46,8 @@ const main = async () => {
             enableTracing: false,                                                    
          };
    const espLoader = new ESPLoader(loaderOptions);
+   // or use emulator
+   // const espLoader = new (getEspEmulator())();
 
    // espefuses
    const efuseOptions = {
