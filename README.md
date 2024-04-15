@@ -1,4 +1,6 @@
-## Javascript port of espefuses
+## Javascript implementation of espefuses
+
+Complementary lib to [esptool-js](https://github.com/espressif/esptool-js). 
 
 **Only the esp32s3 variant is partially supported.**
 
