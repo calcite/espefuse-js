@@ -1,6 +1,6 @@
 ## Javascript implementation of espefuses
 
-Complementary lib to [esptool-js](https://github.com/espressif/esptool-js). 
+Complementary lib to [esptool-js](https://github.com/espressif/esptool-js).
 
 **Only the esp32s3 variant is partially supported.**
 
@@ -23,16 +23,16 @@ import { ESPLoader, LoaderOptions, Transport } from "esptool-js";
 import { getEfuses, getEspEmulator } from "@0m/espefuse-js";
 
 // same as term in esptool-js
-const espLoaderTerminal = {  
-   // xterm-js or any other output                                                  
-   clean() {                                                                    
-      terminal.clear();                                                  
-   },                                                                           
-   writeLine(data) {                                                            
-      terminal.writeln(data);                                            
-   },                                                                           
-   write(data) {                                                                
-      terminal.write(data);                                              
+const espLoaderTerminal = {
+   // xterm-js or any other output
+   clean() {
+      terminal.clear();
+   },
+   writeLine(data) {
+      terminal.writeln(data);
+   },
+   write(data) {
+      terminal.write(data);
    },
 };
 
@@ -41,11 +41,11 @@ const main = async () => {
    const dev = await this.getDevice();
    const transp = new Transport(dev, true);
 
-   const loaderOptions: LoaderOptions = {                                     
-            transport: transp,                                                  
-            baudrate: 115200,                                                 
-            terminal: espLoaderTerminal,                                        
-            enableTracing: false,                                                    
+   const loaderOptions: LoaderOptions = {
+            transport: transp,
+            baudrate: 115200,
+            terminal: espLoaderTerminal,
+            enableTracing: false,
          };
    const espLoader = new ESPLoader(loaderOptions);
    // or use emulator
@@ -54,7 +54,7 @@ const main = async () => {
    // espefuses
    const efuseOptions = {
             esp: espLoader,
-            skipConnect: false,                                
+            skipConnect: false,
             debug: true,
             doNotConfirm: true,
             terminal: this.espLoaderTerminal
@@ -78,7 +78,7 @@ main.then(() => {});
  - debug: `boolean = false`
  - doNotConfirm: `boolean = false` (not-confirm burn op?)
  - terminal = `null`; same as in esptool-js
- - confirmFn = `null`; Confirmation function. Return `true` to confirm or raise Error to deny. 
+ - confirmFn = `null`; Confirmation function. Return `true` to confirm or raise Error to deny.
 
 #### operations
 
@@ -98,7 +98,7 @@ efuses: EspEfuses instance
 
  - **burnBit** `async function burnBit(esp: any, efuses: any, args: any): Promise<void>`
 
-    
+
     ```
     args:
     block: blockName, - Efuse block to burn [string - BLOCK0,BLOCK1,BLOCK2,BLOCK3]
@@ -107,7 +107,7 @@ efuses: EspEfuses instance
 
  - **burnEfuse** `async function burnEfuse(esp: any, efuses: any, args: any): Promise<void>`
 
-    
+
     ```
     args:
     nameValuePairs: [{[efuseName]: efuseValue}, ...]
@@ -117,7 +117,7 @@ efuses: EspEfuses instance
 
    ```
    args:
-   efuses: list of efuse names to read [efuseName, ..] 
+   efuses: list of efuse names to read [efuseName, ..]
    ```
 
    returns dict `{[efuseName]: value, ...}`
@@ -148,3 +148,7 @@ efuses: EspEfuses instance
    Number of items in `block`, `keypurpose`, and `keyfile` / `digest` must be the same.
 
 Operations can be emulated for debugging purposes.
+
+### License
+
+This document and the attached source code are released as Free Software under GNU General Public License Version 2 or later. See the accompanying [LICENSE file](https://github.com/calcite/espefuse-js/blob/master/LICENSE) for a copy.
