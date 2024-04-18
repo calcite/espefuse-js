@@ -11,12 +11,14 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "GPL-2.0",
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calcite/espefuse-js"
+  },
   "dependencies": {
     "@bitarray/es6": "^1.2.0",
     "@types/node": "^20.11.24",
