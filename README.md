@@ -20,7 +20,7 @@ webpack example
 
 ```javascript
 import { ESPLoader, LoaderOptions, Transport } from "esptool-js";
-import { getEfuses, getEspEmulator } from "@0m/espefuse-js";
+import { getEfuses, getEspEmulator } from "@alcz/espefuse-js";
 
 // same as term in esptool-js
 const espLoaderTerminal = {
@@ -67,7 +67,7 @@ const main = async () => {
    await operations.summary(espLoader, efuses, {format: "summary"});
 }
 
-main.then(() => {});
+main();
 
 ```
 
