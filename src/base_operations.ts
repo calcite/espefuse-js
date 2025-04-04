@@ -260,7 +260,7 @@ export async function burnEfuse(esp: any, efuses: any, args: any): Promise<void>
   }
 
   if (
-    esp.CHIP_NAME === "ESP32" &&
+    esp.chip.CHIP_NAME === "ESP32" &&
     esp.getChipRevision() >= 300 &&
     efuseNameList.includes("UART_DOWNLOAD_DIS")
   ) {

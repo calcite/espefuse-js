@@ -22,7 +22,7 @@ const SUPPORTED_CHIPS = {
 
 function getEfuses( options ): [any, any] {
   for (const name in SUPPORTED_CHIPS) {
-    if (SUPPORTED_CHIPS[name].chipName === options.esp.CHIP_NAME) {
+    if (SUPPORTED_CHIPS[name].chipName === options.esp.chip.CHIP_NAME) {
       const efuse = SUPPORTED_CHIPS[name].efuseLib;
       return [
         new efuse.EspEfuses(options),
@@ -30,7 +30,8 @@ function getEfuses( options ): [any, any] {
       ];
     }
   }
-  throw new Error(`get_efuses: Unsupported chip (${options.esp.CHIP_NAME})`);
+  throw new Error(
+    `get_efuses: Unsupported chip (${options.esp.chip.CHIP_NAME})`);
 }
 
 function getEspEmulator(chipName="ESP32-S3"): any {
